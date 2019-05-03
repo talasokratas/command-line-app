@@ -29,7 +29,7 @@ class AgeCommand extends Command
             ->setDescription('Calculates your age by given date of birth')
             ->addArgument('dob', InputArgument::OPTIONAL,'Date of birth yyyy-mm-dd')
             ->setHelp('This command allows you to calculate age by given date of birth')
-            ->addOption('--adult', 'a', InputOption::VALUE_NONE, 'Tells if you are over 18 years old' )
+            ->addOption('adult', 'a', InputOption::VALUE_NONE, 'Tells if you are over 18 years old' )
         ;
     }
 
@@ -39,10 +39,34 @@ class AgeCommand extends Command
         $dob = $input->getArgument('dob');
 
         if($dob) {
-            $bday = new DateTime($dob);
-            $today = new Datetime(date('m.d.y'));
-            $age = $today->diff($bday);
-            $io->note(sprintf('I am %s years old',$age->y));
+            if(DateTime::createFromFormat('Y-m-d', $dob) !== FALSE){
+                $bday = new DateTime($dob);
+                $today = new Datetime(date('m.d.y'));
+                $age = $today->diff($bday);
+                $io->note(sprintf('I am %s years old',$age->y));
+            }
+            else {
+                $io->error(sprintf('Please enter your date of birth in this format: yyyy-mm-dd'));
+                die();
+            }
+
+        } else {
+            $io->error(sprintf('Please enter your date of birth'));
+            die();
+        }
+
+
+        if($input->getOption('adult')){
+            if($dob)  {
+                if($age->y >= 18) {
+                    $io->success(sprintf('Am I an adult ? ----- YES !'));
+                } else {
+                    $io->warning(sprintf('Am I an adult ? ----- NO !!!'));
+                }
+            }
+            else {
+                $io->error(sprintf('Please enter your date of birth'));
+            }
         }
     }
 }
