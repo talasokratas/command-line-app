@@ -46,6 +46,10 @@ class AdultCalculator extends AbstractCalculator implements CalculatorInterface
 
     }
 
+    /**
+     * @param int $age
+     * @return bool
+     */
     public function isAdult(int $age): bool
     {
         $result = false;

@@ -1,3 +1,7 @@
 services:
     app.command.calculator_loader:
       class: App\Command\CalculatorLoader
+      calls:
+      - [addCalculator, ['age', '@app.calculator.adult_calculator']]
+      - [addCalculator, ['adult', '@app.calculator.age_calculator']]
+
