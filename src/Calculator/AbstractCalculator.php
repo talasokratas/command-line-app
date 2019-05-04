@@ -35,29 +35,14 @@ abstract class AbstractCalculator
      * @param InputInterface $input
      * @param OutputInterface $output
      */
-    public function printInfo(InputInterface $input, OutputInterface $output)
-    {
-        $io = new SymfonyStyle($input,$output);
-        $dob = $input->getArgument('dob');
+    abstract public function printInfo(InputInterface $input, OutputInterface $output): void;
 
-        if($this->checkDateFormat($dob)){
-            $bday = new DateTime($dob);
-            $age = $this->calculateAge($bday);
-
-        } else {
-            $io->error(sprintf('Please enter your date of birth in this format: yyyy-mm-dd'));
-            die();
-        }
-
-        return $io->note(sprintf('I am %s years old',$age));
-
-    }
 
     /**
      * @param string $dob
      * @return bool
      */
-    public function checkDateFormat(string $dob)
+    public function checkDateFormat(string $dob): bool
     {
         $result = false;
 

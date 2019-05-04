@@ -9,10 +9,11 @@
 namespace App\Command;
 
 
+use App\Calculator\AdultCalculator;
 use App\Calculator\AgeCalculator;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Style\SymfonyStyle;
+
 
 class CalculatorLoader
 {
@@ -22,7 +23,8 @@ class CalculatorLoader
     {
 
         if($input->getOption('adult')){
-           //
+            $loader = new AdultCalculator();
+            $loader->printInfo($input,$output);
         } else {
             $loader = new AgeCalculator();
             $loader->printInfo($input,$output);

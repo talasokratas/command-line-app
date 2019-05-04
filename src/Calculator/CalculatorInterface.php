@@ -25,5 +25,5 @@ interface CalculatorInterface
      * @param OutputInterface $output
      * @return mixed
      */
-    public function printInfo(InputInterface $input, OutputInterface $output);
+    public function printInfo(InputInterface $input, OutputInterface $output):void ;
 }

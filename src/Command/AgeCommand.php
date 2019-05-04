@@ -9,13 +9,12 @@
 namespace App\Command;
 
 
-use DateTime;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Style\SymfonyStyle;
+
 
 
 class AgeCommand extends Command
@@ -45,38 +44,5 @@ class AgeCommand extends Command
     {
         $this->loader->info($input, $output);
 
-        $io = new SymfonyStyle($input,$output);
-        $dob = $input->getArgument('dob');
-
-        if($dob) {
-            if(DateTime::createFromFormat('Y-m-d', $dob) !== FALSE){
-                $bday = new DateTime($dob);
-                $today = new Datetime(date('m.d.y'));
-                $age = $today->diff($bday);
-                $io->note(sprintf('I am %s years old',$age->y));
-            }
-            else {
-                $io->error(sprintf('Please enter your date of birth in this format: yyyy-mm-dd'));
-                die();
-            }
-
-        } else {
-            $io->error(sprintf('Please enter your date of birth'));
-            die();
-        }
-
-
-        if($input->getOption('adult')){
-            if($dob)  {
-                if($age->y >= 18) {
-                    $io->success(sprintf('Am I an adult ? ----- YES !'));
-                } else {
-                    $io->warning(sprintf('Am I an adult ? ----- NO !!!'));
-                }
-            }
-            else {
-                $io->error(sprintf('Please enter your date of birth'));
-            }
-        }
     }
 }
