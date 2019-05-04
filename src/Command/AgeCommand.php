@@ -21,6 +21,14 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 class AgeCommand extends Command
 {
     protected static $defaultName = 'app:age:calculator';
+    private $loader;
+
+    public function __construct(CalculatorLoader $calculatorLoader)
+    {
+        $this->loader = $calculatorLoader;
+
+        parent::__construct();
+    }
 
     protected function configure()
     {
