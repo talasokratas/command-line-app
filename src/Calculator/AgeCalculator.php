@@ -10,9 +10,20 @@ namespace App\Calculator;
 
 
 use DateTime;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 
-class AgeCalculator
+class AgeCalculator extends AbstractCalculator implements CalculatorInterface
 {
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return mixed|void
+     */
+    public function printInfo(InputInterface $input, OutputInterface $output)
+    {
+        parent::printInfo($input, $output);
 
+    }
 
 }
