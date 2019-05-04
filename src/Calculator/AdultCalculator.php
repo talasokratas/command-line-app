@@ -6,7 +6,7 @@
  * Time: 14:24
  */
 
-namespace App\Calculators;
+namespace App\Calculator;
 
 
 class AdultCalculator

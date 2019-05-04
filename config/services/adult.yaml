@@ -1,0 +1,4 @@
+parameters:
+services:
+  app.calculator.adult_calculator:
+    class: App\Calculator\AdultCalculator
