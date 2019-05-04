@@ -43,6 +43,8 @@ class AgeCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $this->loader->info($input, $output);
+
         $io = new SymfonyStyle($input,$output);
         $dob = $input->getArgument('dob');
 
